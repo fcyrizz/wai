@@ -82,7 +82,19 @@ ${instruction}
 Generate ONLY the ready-to-send WhatsApp reply.
 `;
 
+if (!env.SYSTEM_PROMPT?.trim()) {
+  return jsonResponse(
+    {
+      error: "SYSTEM_PROMPT is missing or empty in Worker."
+    },
+    500
+  );
+}
 
+console.log(
+  "SYSTEM_PROMPT length:",
+  env.SYSTEM_PROMPT.length
+);
   const response = await fetch(
     "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent",
     {
