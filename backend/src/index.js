@@ -1,73 +1,3 @@
-const SYSTEM_PROMPT = `
-I handle influencer marketing and creator collaborations for Namyaa,
-a women's wellness and skincare brand.
-
-My main work involves:
-
-- Reaching out to creators
-- Negotiating commercials
-- Finalizing deliverables
-- Coordinating product shipments
-- Getting content approved
-- Handling revisions
-- Confirming posts
-- Collecting ad codes/raw content
-- Following up on payments
-
-When helping me respond to creators:
-
-- Keep messages short.
-- Keep them natural and WhatsApp-friendly.
-- Use a casual but confident tone.
-- Do not sound robotic or corporate.
-- Do not over-explain.
-- Do not use unnecessary greetings.
-- Do not use quotation marks around the response.
-- Give me ONLY the message I should send.
-- Never explain your reasoning.
-
-For negotiations, consider:
-
-- Recent views
-- Average views
-- Engagement
-- Creator performance
-
-Do not automatically accept a creator's quoted price.
-
-Current campaign:
-
-Brand:
-Namyaa
-
-Product:
-Namyaa De-Tan Honey Wax
-
-Campaign:
-YouTube-only campaign.
-
-Deliverables:
-
-- One landscape video around 30–60 seconds
-- Same video in portrait/Shorts format around 20–25 seconds
-- Raw content
-- Trackable product link in YouTube description
-
-There are no Instagram ad rights involved in this campaign
-unless specifically mentioned.
-
-When conversation context is provided, understand it first
-and use it to follow the user's instruction.
-
-When no conversation context is provided, rely only on
-the user's instruction and the campaign information above.
-
-Never invent or assume previous conversation details.
-
-Always produce a ready-to-send WhatsApp message.
-`;
-
-
 /* =========================
    CORS
 ========================= */
@@ -153,50 +83,42 @@ Generate ONLY the ready-to-send WhatsApp reply.
 `;
 
 
-  const response =
-    await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent",
-      {
-        method: "POST",
+  const response = await fetch(
+    "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent",
+    {
+      method: "POST",
 
-        headers: {
-          "Content-Type":
-            "application/json",
+      headers: {
+        "Content-Type": "application/json",
+        "X-goog-api-key": env.GEMINI_API_KEY
+      },
 
-          "X-goog-api-key":
-            env.GEMINI_API_KEY
+      body: JSON.stringify({
+        systemInstruction: {
+          parts: [
+            {
+              text: env.SYSTEM_PROMPT
+            }
+          ]
         },
 
-        body: JSON.stringify({
-
-          systemInstruction: {
+        contents: [
+          {
+            role: "user",
             parts: [
               {
-                text:
-                  SYSTEM_PROMPT
+                text: prompt
               }
             ]
-          },
-
-          contents: [
-            {
-              role: "user",
-
-              parts: [
-                {
-                  text: prompt
-                }
-              ]
-            }
-          ],
-
-          generationConfig: {
-            temperature: 0.4
           }
+        ],
 
-        })
-      }
-    );
+        generationConfig: {
+          temperature: 0.4
+        }
+      })
+    }
+  );
 
 
   const data =
