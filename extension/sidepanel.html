@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>WhatsApp AI Reply</title>
+
+  <link
+    rel="stylesheet"
+    href="sidepanel.css"
+  >
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- FIXED HEADER -->
+    <header class="header">
+
+      <div class="header-title">
+        <div class="header-icon">
+          ✦
+        </div>
+
+        <div>
+          <h1>AI Reply</h1>
+          <p>WhatsApp Creator Assistant</p>
+        </div>
+      </div>
+
+      <button
+        id="refreshBtn"
+        class="refresh-button"
+        title="Refresh conversation"
+      >
+        ↻
+      </button>
+
+    </header>
+
+
+    <!-- FIXED CHAT TOOLBAR -->
+    <div class="chat-toolbar">
+
+      <div class="conversation-title">
+        Conversation
+      </div>
+
+      <div class="chat-actions">
+
+        <button id="last5Btn">
+          Last 5
+        </button>
+
+        <button id="selectAllBtn">
+          All
+        </button>
+
+        <button id="clearAllBtn">
+          Clear
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- ONLY THIS AREA SCROLLS -->
+    <main
+      id="messages"
+      class="messages"
+    >
+
+      <div class="empty">
+        Open a WhatsApp conversation
+        and refresh.
+      </div>
+
+    </main>
+
+
+    <!-- FIXED INPUT -->
+    <div class="composer">
+
+      <textarea
+        id="instruction"
+        placeholder="Tell me what to reply..."
+        rows="1"
+      ></textarea>
+
+      <button
+        id="generateBtn"
+        class="send-button"
+        title="Generate reply"
+      >
+        ↑
+      </button>
+
+    </div>
+
+
+    <!-- STATUS -->
+    <div
+      id="status"
+      class="status"
+    ></div>
+
+  </div>
+
+
+  <script src="sidepanel.js"></script>
+
+</body>
+
+</html>

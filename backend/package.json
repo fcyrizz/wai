@@ -1,0 +1,12 @@
+{
+  "name": "whatsapp-ai-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch index.js",
+    "start": "bun index.js"
+  },
+  "dependencies": {
+    "dotenv": "latest"
+  }
+}
